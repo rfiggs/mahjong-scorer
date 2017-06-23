@@ -1,0 +1,10 @@
+body{
+    background-color: #ccc;
+}
+
+.tile{
+    background-color: aqua;
+}
+.tile:nth-child(odd){
+    background-color: aquamarine;
+}
