@@ -89,7 +89,18 @@ tiles = [
         img:'images/tiles/MJh8.png',
         index:14
     },
-
-
 ];
 
+let size = tiles.length;
+
+for(let [type,char] of [['character','w'],['dot','t'],['stick','s']]){
+    for(let value = 1; value <= 9; value++){
+        let newtile = {
+            type,
+            value,
+            img:`images/tiles/MJ${char}${value}.png`,
+            index:size++
+        };
+        tiles.push(newtile)
+    }
+}

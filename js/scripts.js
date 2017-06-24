@@ -87,7 +87,7 @@ for(x in tiles){
     }
     //set up the rest of the tiles
     else{
-        part = Math.floor((x-15) / 9);
+        part = Math.floor((x-15) / 9) + 2;
     }
     console.log(part);
     $('div#tileChoices'+part).append(tile(tiles[x],'tilePool'));
