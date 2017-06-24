@@ -85,7 +85,7 @@ for(x in tiles){
     else if(x < 15){
         part = 1;
     }
-    //set up the rest of the tiles
+    // arrange the rest of the tiles
     else{
         part = Math.floor((x-15) / 9) + 2;
     }
