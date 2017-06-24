@@ -1,18 +1,6 @@
 window.onbeforeunload = function() {
     return "Data will be lost if you leave the page, are you sure?";
 };
-arr =[
-    'one',
-    'two',
-    'three',
-    'four',
-    'five',
-    'six',
-    'seven',
-    'eight',
-    'nine'
-];
-
 
 /**
  * @function addToHand
@@ -29,6 +17,13 @@ function addToHand(i){
         hand.append(tile(x,'hand'));
     }
 }
+function addToFlowerHand(i){
+  let x = tiles[i];
+  let hand = $("div#flowerhand");
+  if(hand.children().length < 8){
+    hand.append(tile(x,'hand'));
+  }
+}
 
 function removeFromHand(i){
     $(i).parent().remove();
@@ -39,13 +34,22 @@ function tile(value, mod){
     switch (mod) {
         case 'tilePool':
             temp = `
-                <div class='col-xs-1'>
+                <div class='tile'>
                     <a href="#" onclick="javascript: addToHand('${value.index}');">
                         <img src="${value.img}" alt="${value.value} ${value.type}"/>
                     </a>
                 </div>
                 `;
         break;
+        case 'tilePoolFlower':
+          temp = `
+                  <div class='tile'>
+                      <a href="#" onclick="javascript: addToFlowerHand('${value.index}');">
+                          <img src="${value.img}" alt="${value.value} ${value.type}"/>
+                      </a>
+                  </div>
+                  `;
+          break;
         case 'hand':
             temp = `
                 <div class='tile'>
@@ -80,15 +84,19 @@ for(x in tiles){
     // arrange dragons and winds
     if(x < 7){
         part = 0;
+        $('div#tileChoices'+part).append(tile(tiles[x],'tilePool'));
+
     }
     // arrange flowers and seasons
     else if(x < 15){
         part = 1;
+        $('div#tileChoices'+part).append(tile(tiles[x],'tilePoolFlower'));
+
     }
     // arrange the rest of the tiles
     else{
         part = Math.floor((x-15) / 9) + 2;
+        $('div#tileChoices'+part).append(tile(tiles[x],'tilePool'));
+
     }
-    console.log(part);
-    $('div#tileChoices'+part).append(tile(tiles[x],'tilePool'));
 }
