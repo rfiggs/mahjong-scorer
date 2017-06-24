@@ -3,8 +3,6 @@ body{
 }
 
 .tile{
+    display:inline-block;
     background-color: aqua;
-}
-.tile:nth-child(odd){
-    background-color: aquamarine;
 }
